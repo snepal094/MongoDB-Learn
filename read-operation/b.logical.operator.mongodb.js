@@ -32,3 +32,8 @@ db.movies.find(
 
 //! NAND
 //TODO: real life scenarios(questions): AND, OR, NAND, NOR
+
+//AND: movies whose rating greater than 7 AND genre is "Comedy"
+//OR: movies whose rating greater than 7 OR genre is "Comedy"
+//NOR: movies whose rating is neither greater than 7 NOR is its genre "Comedy"
+//NAND: movies whose rating greater than 7 or genre is "Comedy", but not both
