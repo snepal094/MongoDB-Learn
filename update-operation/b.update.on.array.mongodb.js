@@ -78,5 +78,14 @@ use("kec-crud");
 // );
 
 //* pull item which has sub "Science" and marks less than 88 from Rajan's data
+// db.scores.updateOne(
+//   { name: "Rajan" },
+//   {
+//     $pull: {
+//       points: { sub: "Science" },
+//       marks: { $lt: 88 },
+//     },
+//   }
+// );
 
 db.scores.find();
