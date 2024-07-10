@@ -14,7 +14,7 @@ use("kec-crud");
 
 // db.student.find();
 
-//$oid= object id
+//$oid= object id, primary key
 
 // db.student.insertOne({
 //   _id: 101, //can give id yourself (not recommended)

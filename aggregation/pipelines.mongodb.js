@@ -4,7 +4,7 @@
 // pipeline: separation of function
 // one's output is another's input
 
-//? $match, $project, $sort, $limit, $skip
+//? $match, $project, $sort, $limit, $skip, $lookup, $unwind
 
 use("kec-crud");
 
@@ -168,11 +168,40 @@ use("kec-crud");
 // ]);
 
 //* find first 5 movies whose rating is greater than 8 and id is sorted in ascending order
+// db.movies.aggregate(
+//   {
+//     $match: {
+//       "rating.average": { $gt: 8 },
+//     },
+//   },
+//   {
+//     $sort: {
+//       id: 1,
+//     },
+//   },
+//   {
+//     $limit: 5,
+//   },
+//   {
+//     $project: {
+//       _id: 0,
+//       id: 1,
+//       avgRating: "$rating.average",
+//       name: 1,
+//     },
+//   }
+// );
+
+//? $skip
+let page = 2;
+let limit = 5;
+let skip = (page - 1) * limit;
+
+// $limit and $skip are used for pagination
+
 db.movies.aggregate(
   {
-    $match: {
-      "rating.average": { $gt: 8 },
-    },
+    $match: {},
   },
   {
     $sort: {
@@ -180,14 +209,16 @@ db.movies.aggregate(
     },
   },
   {
-    $limit: 5,
+    $skip: skip, //skips the top 5 documents
+  },
+  {
+    $limit: limit,
   },
   {
     $project: {
+      name: 1,
       _id: 0,
       id: 1,
-      avgRating: "$rating.average",
-      name: 1,
     },
   }
 );
